@@ -25,9 +25,7 @@
       animation: popIn 1s ease forwards;
     }
 
-    h1 {
-      margin-top: 0;
-    }
+    h1 { margin-top: 0; }
 
     button {
       margin-top: 15px;
@@ -41,15 +39,17 @@
       transition: transform 0.2s;
     }
 
-    button:hover {
-      transform: scale(1.1);
-    }
+    button:hover { transform: scale(1.1); }
 
     #message {
       margin-top: 15px;
       font-size: 18px;
       opacity: 0;
       transition: opacity 0.5s;
+    }
+
+    .fade-in {
+      opacity: 1 !important;
     }
 
     @keyframes popIn {
@@ -61,7 +61,7 @@
       position: absolute;
       color: rgba(255, 255, 255, 0.8);
       font-size: 20px;
-      animation: floatUp 6s linear infinite;
+      animation: floatUp 6s linear forwards;
     }
 
     @keyframes floatUp {
@@ -75,7 +75,7 @@
   <div class="card">
     <h1>Hi, my Valentine 💕</h1>
     <p>I made this just for you.</p>
-    <button onclick="showLove()">Click me</button>
+    <button id="loveButton">Click me</button>
     <div id="message"></div>
   </div>
 
@@ -94,20 +94,21 @@
     ];
 
     let clickCount = 0;
+    const messageEl = document.getElementById("message");
+    const button = document.getElementById("loveButton");
 
-    function showLove() {
-      const msg = document.getElementById("message");
+    button.addEventListener("click", () => {
       if (clickCount < messages.length) {
-        msg.innerHTML = messages[clickCount];
-        msg.style.opacity = 0;
-        setTimeout(() => {
-          msg.style.opacity = 1;
-        }, 50); // tiny delay for fade effect
+        messageEl.classList.remove("fade-in");       // Reset opacity
+        messageEl.innerHTML = messages[clickCount];
+        void messageEl.offsetWidth;                  // Trigger reflow
+        messageEl.classList.add("fade-in");          // Fade in
         clickCount++;
       } else {
-        msg.innerHTML = "💖 You’ve unlocked all my love 💖";
+        messageEl.innerHTML = "💖 You’ve unlocked all my love 💖";
+        messageEl.classList.add("fade-in");
       }
-    }
+    });
 
     // Floating hearts
     setInterval(() => {
@@ -117,7 +118,7 @@
       heart.style.left = Math.random() * 100 + "vw";
       heart.style.fontSize = Math.random() * 20 + 15 + "px";
       document.body.appendChild(heart);
-      setTimeout(() => { heart.remove(); }, 6000);
+      setTimeout(() => heart.remove(), 6000);
     }, 500);
   </script>
 
