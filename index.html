@@ -53,14 +53,8 @@
     }
 
     @keyframes popIn {
-      from {
-        transform: scale(0.8);
-        opacity: 0;
-      }
-      to {
-        transform: scale(1);
-        opacity: 1;
-      }
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
 
     .heart {
@@ -71,66 +65,49 @@
     }
 
     @keyframes floatUp {
-      from {
-        transform: translateY(100vh);
-        opacity: 1;
-      }
-      to {
-        transform: translateY(-10vh);
-        opacity: 0;
-      }
+      from { transform: translateY(100vh); opacity: 1; }
+      to { transform: translateY(-10vh); opacity: 0; }
     }
   </style>
 </head>
 <body>
 
   <div class="card">
-    <h1>Hi, my Pookie 💕</h1>
+    <h1>Hi, my Valentine 💕</h1>
     <p>I made this just for you.</p>
     <button onclick="showLove()">Click me</button>
-    <div id="message">I hope you know how much i appreciate you and love you.❤️</div>
+    <div id="message"></div>
   </div>
 
   <script>
+    const messages = [
+      "I choose you. Always ❤️",
+      "You make my heart smile 😍",
+      "Even your quirks are cute 🥹",
+      "I love you more than snacks 🍫",
+      "You + me = unstoppable 💪",
+      "Thinking of you right now 🫶",
+      "Every day with you is magic ✨",
+      "You're my favorite person ever 🥰",
+      "I can’t wait to see you 😘",
+      "Forever and always, my Valentine 💕"
+    ];
+
+    let clickCount = 0;
+
     function showLove() {
       const msg = document.getElementById("message");
-      msg.style.opacity = 1;
+      if (clickCount < messages.length) {
+        msg.innerHTML = messages[clickCount];
+        msg.style.opacity = 0;
+        setTimeout(() => {
+          msg.style.opacity = 1;
+        }, 50); // tiny delay for fade effect
+        clickCount++;
+      } else {
+        msg.innerHTML = "💖 You’ve unlocked all my love 💖";
+      }
     }
-
-    <div class="card">
-  <h1>Hi, my Valentine 💕</h1>
-  <p>I made this just for you.</p>
-  <button onclick="showLove()">Click me</button>
-  <div id="message"></div>
-</div>
-
-<script>
-  const messages = [
-    "I choose you. Always ❤️",
-    "You make my heart smile 😍",
-    "Even your quirks are cute 🥹",
-    "I love you more than snacks 🍫",
-    "You + me = unstoppable 💪",
-    "Thinking of you right now 🫶",
-    "Every day with you is magic ✨",
-    "You're my favorite person ever 🥰",
-    "I can’t wait to see you 😘",
-    "Forever and always, my Valentine 💕"
-  ];
-
-  let clickCount = 0;
-
-  function showLove() {
-    const msg = document.getElementById("message");
-    if (clickCount < messages.length) {
-      msg.innerHTML = messages[clickCount];
-      msg.style.opacity = 1;
-      clickCount++;
-    } else {
-      msg.innerHTML = "💖 You’ve unlocked all my love 💖";
-    }
-  }
-</script>
 
     // Floating hearts
     setInterval(() => {
@@ -140,10 +117,7 @@
       heart.style.left = Math.random() * 100 + "vw";
       heart.style.fontSize = Math.random() * 20 + 15 + "px";
       document.body.appendChild(heart);
-
-      setTimeout(() => {
-        heart.remove();
-      }, 6000);
+      setTimeout(() => { heart.remove(); }, 6000);
     }, 500);
   </script>
 
