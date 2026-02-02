@@ -88,7 +88,7 @@
     <h1>Hi, my Pookie 💕</h1>
     <p>I made this just for you.</p>
     <button onclick="showLove()">Click me</button>
-    <div id="message">I choose you. Always ❤️</div>
+    <div id="message">I hope you know how much i appreciate you and love you.❤️</div>
   </div>
 
   <script>
@@ -96,6 +96,41 @@
       const msg = document.getElementById("message");
       msg.style.opacity = 1;
     }
+
+    <div class="card">
+  <h1>Hi, my Valentine 💕</h1>
+  <p>I made this just for you.</p>
+  <button onclick="showLove()">Click me</button>
+  <div id="message"></div>
+</div>
+
+<script>
+  const messages = [
+    "I choose you. Always ❤️",
+    "You make my heart smile 😍",
+    "Even your quirks are cute 🥹",
+    "I love you more than snacks 🍫",
+    "You + me = unstoppable 💪",
+    "Thinking of you right now 🫶",
+    "Every day with you is magic ✨",
+    "You're my favorite person ever 🥰",
+    "I can’t wait to see you 😘",
+    "Forever and always, my Valentine 💕"
+  ];
+
+  let clickCount = 0;
+
+  function showLove() {
+    const msg = document.getElementById("message");
+    if (clickCount < messages.length) {
+      msg.innerHTML = messages[clickCount];
+      msg.style.opacity = 1;
+      clickCount++;
+    } else {
+      msg.innerHTML = "💖 You’ve unlocked all my love 💖";
+    }
+  }
+</script>
 
     // Floating hearts
     setInterval(() => {
